@@ -13,7 +13,7 @@ def delete_group(group_id=None):
         db.execute('delete from plugin_dir where grp_id = %s', [group_id], cursor=cursor)
         db.commit()
         return ''
-    except Exception, e:
+    except Exception as e:
         logging.getLogger().error(e)
         db.rollback()
         return 'delete group %s fail' % group_id

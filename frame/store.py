@@ -2,13 +2,13 @@
 __author__ = 'Ulric Qin'
 
 import logging
-import MySQLdb
+import pymysql
 from frame import config
 
 
 def connect_db(cfg):
     try:
-        conn = MySQLdb.connect(
+        conn = pymysql.connect(
             host=cfg.DB_HOST,
             port=cfg.DB_PORT,
             user=cfg.DB_USER,
@@ -17,7 +17,7 @@ def connect_db(cfg):
             use_unicode=True,
             charset="utf8")
         return conn
-    except Exception, e:
+    except Exception as e:
         logging.getLogger().critical('connect db: %s' % e)
         return None
 
@@ -37,7 +37,7 @@ class DB(object):
         try:
             cursor = cursor or self.get_conn().cursor()
             cursor.execute(*a, **kw)
-        except (AttributeError, MySQLdb.OperationalError):
+        except (AttributeError, pymysql.OperationalError):
             self.conn and self.conn.close()
             self.conn = None
             cursor = self.get_conn().cursor()
@@ -53,7 +53,7 @@ class DB(object):
             row_id = cursor.lastrowid
             self.commit()
             return row_id
-        except MySQLdb.IntegrityError:
+        except pymysql.IntegrityError:
             self.rollback()
         finally:
             cursor and cursor.close()
@@ -67,7 +67,7 @@ class DB(object):
             self.commit()
             row_count = cursor.rowcount
             return row_count
-        except MySQLdb.IntegrityError:
+        except pymysql.IntegrityError:
             self.rollback()
         finally:
             cursor and cursor.close()
@@ -98,14 +98,14 @@ class DB(object):
         if self.conn:
             try:
                 self.conn.commit()
-            except MySQLdb.OperationalError:
+            except pymysql.OperationalError:
                 self.conn = None
 
     def rollback(self):
         if self.conn:
             try:
                 self.conn.rollback()
-            except MySQLdb.OperationalError:
+            except pymysql.OperationalError:
                 self.conn = None
 
 

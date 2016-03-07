@@ -30,5 +30,5 @@ COMMUNITY = True
 
 try:
     from frame.local_config import *
-except Exception, e:
-    print "[warning] %s" % e
+except Exception as e:
+    print("[warning] %s" % e)
