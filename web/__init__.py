@@ -3,7 +3,7 @@ __author__ = 'Ulric Qin'
 
 import logging
 import datetime
-import urllib
+import urllib.parse
 from flask import Flask, request, g, session, make_response, redirect
 from frame.api import uic
 
@@ -55,7 +55,7 @@ def before_request():
 
 def redirect_to_sso():
     sig = uic.gen_sig()
-    resp = make_response(redirect(uic.login_url(sig, urllib.quote(request.url))))
+    resp = make_response(redirect(uic.login_url(sig, urllib.parse.quote(request.url))))
     resp.set_cookie('sig', sig)
     return resp
 

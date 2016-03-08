@@ -17,8 +17,8 @@ SESSION_COOKIE_NAME = "falcon-portal"
 PERMANENT_SESSION_LIFETIME = 3600 * 24 * 30
 
 UIC_ADDRESS = {
-    'internal': 'http://127.0.0.1:8080',
-    'external': 'http://11.11.11.11:8080',
+    'internal': 'http://127.0.0.1:1234',
+    'external': 'http://127.0.0.1:1234',
 }
 
 UIC_TOKEN = ''
