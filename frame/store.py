@@ -4,6 +4,7 @@ __author__ = 'Ulric Qin'
 import logging
 import pymysql
 from frame import config
+from flask_sqlalchemy import SQLAlchemy
 
 
 def connect_db(cfg):
@@ -110,3 +111,5 @@ class DB(object):
 
 
 db = DB(config)
+
+db2 = SQLAlchemy()
