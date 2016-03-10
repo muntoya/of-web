@@ -6,9 +6,14 @@ import datetime
 import urllib.parse
 from flask import Flask, request, g, session, make_response, redirect
 from frame.api import uic
+from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config.from_object("frame.config")
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql:///127.0.0.1'
+app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+
+db = SQLAlchemy(app)
 
 # config log
 log_formatter = '%(asctime)s\t[%(filename)s:%(lineno)d] [%(levelname)s: %(message)s]'
