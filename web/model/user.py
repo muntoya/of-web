@@ -7,7 +7,7 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64))
-    password = db.Column(db.String(64), default='', nullable=True)
+    passwd = db.Column(db.String(64), default='', nullable=True)
     cnname = db.Column(db.String(128), default='', nullable=True)
     email = db.Column(db.String(255), default='', nullable=True)
     phone = db.Column(db.String(16), default='', nullable=True)
@@ -16,6 +16,15 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User {}>'.format(self.name)
+
+    def __init__(self, name='', passwd='', cnname='', email='', phone='', role=''):
+        self.name = name
+        self.passwd = passwd
+        self.cnname = cnname
+        self.email = email
+        self.phone = phone
+        self.role = role
+
 
     def save(self):
         db.session.add(self)

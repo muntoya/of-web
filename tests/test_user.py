@@ -1,10 +1,17 @@
 # -*- coding: utf-8 -*-
 
-import unittest
+from flask import Flask
 from web.model.user import User
-from tests.utils import BaseTest
+import pytest
 
-class UserTestCase(BaseTest):
-    def saveTest(self):
-        user1 = User(name='haha')
-        user1.save()
+app = Flask(__name__)
+
+@pytest.fixture
+def user1():
+    return User("user1", "asfdg", "heihei")
+
+
+def test_save():
+    user1 = User(name='haha')
+    user1.save()
+
