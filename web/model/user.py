@@ -17,7 +17,7 @@ class User(db.Model):
     def __repr__(self):
         return '<User {}>'.format(self.name)
 
-    def __init__(self, name='', passwd='', cnname='', email='', phone='', role=''):
+    def __init__(self, name='', passwd='', cnname='', email='', phone='', role=0):
         self.name = name
         self.passwd = passwd
         self.cnname = cnname
@@ -28,4 +28,5 @@ class User(db.Model):
 
     def save(self):
         db.session.add(self)
+        db.session.commit()
 

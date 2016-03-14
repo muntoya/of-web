@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS falcon_portal;
 CREATE DATABASE falcon_portal;
-USE falcon_portal;
+USE falcon_portal_test;
 SET NAMES 'utf8';
 
 /**
