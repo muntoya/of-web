@@ -9,15 +9,18 @@ from flask import Flask, request, g, session, make_response, redirect
 from frame.api import uic
 from flask.ext.sqlalchemy import SQLAlchemy
 
+
+mysql_url = 'mysql+pymysql://root:123456@127.0.0.1:3306/' \
+            'falcon_portal_test?charset=utf8'
+mysql_test_url = 'mysql+pymysql://root:123456@127.0.0.1:3306/' \
+                 'falcon_portal?charset=utf8'
 app = Flask(__name__)
 app.config.from_object("frame.config")
 if hasattr(sys, '_called_from_test'):
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:123456@127.0.0.1:3306/' \
-                                            'falcon_portal_test?charset=utf8'
+    app.config['SQLALCHEMY_DATABASE_URI'] = mysql_url
 else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = \
-        'mysql+pymysql://root:123456@127.0.0.1:3306/' \
-                                            'falcon_portal?charset=utf8'
+    app.config['SQLALCHEMY_DATABASE_URI'] = mysql_test_url
+
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 
 db = SQLAlchemy(app)

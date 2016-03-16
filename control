@@ -86,10 +86,11 @@ function pack() {
 }
 
 function test() {
+    set -e
     source env/bin/activate
-    sh tests/setup.sh
+    python tests/setup.py
     py.test tests
-    sh tests/teardown.sh
+    python tests/teardown.py
 }
 function help() {
     echo "$0 start|stop|restart|status|tail|kill9|version|pack|test"
