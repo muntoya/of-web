@@ -4,3 +4,4 @@ Werkzeug
 gunicorn
 requests
 PyMySQL
+pylint
