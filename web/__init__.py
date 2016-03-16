@@ -22,6 +22,7 @@ else:
     app.config['SQLALCHEMY_DATABASE_URI'] = mysql_test_url
 
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 db = SQLAlchemy(app)
 

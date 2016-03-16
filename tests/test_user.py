@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask
 from web.model.user import User
 import pytest
-
 
 
 @pytest.fixture
