@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from sqlalchemy.orm.exc import NoResultFound
 from web import db
 
 class User(db.Model):
@@ -22,6 +23,29 @@ class User(db.Model):
         return cls(id=None, name=name, passwd=passwd, cnname=cnname,
                    email=email, phone=phone, role=role, created=None)
 
+    @classmethod
+    def get_all(cls):
+        query = db.session.query(cls)
+        return query.all()
+
+    @classmethod
+    def get_by_id(cls, id):
+        query = db.session.query(User).filter(User.id == id)
+        try:
+            user = query.one()
+            return user
+        except NoResultFound:
+            return None
+
+    @classmethod
+    def get_by_name(cls, name):
+        query = db.session.query(User).filter(User.name == name)
+        try:
+            user = query.one()
+            return user
+        except NoResultFound:
+            return None
+
     def __init__(self, id, name, passwd, cnname, email, phone, role, created):
         self.id = id
         self.name = name
@@ -35,4 +59,5 @@ class User(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
+
 

@@ -89,7 +89,7 @@ function test() {
     set -e
     source env/bin/activate
     python tests/data.py setup
-    py.test -s tests
+    py.test -s -v tests
     #python tests/data.py teardown
 }
 function help() {
