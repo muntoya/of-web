@@ -89,8 +89,8 @@ function test() {
     set -e
     source env/bin/activate
     python tests/data.py setup
-    py.test tests
-    python tests/data.py teardown
+    py.test -s tests
+    #python tests/data.py teardown
 }
 function help() {
     echo "$0 start|stop|restart|status|tail|kill9|version|pack|test"

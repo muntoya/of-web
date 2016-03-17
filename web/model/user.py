@@ -17,14 +17,20 @@ class User(db.Model):
     def __repr__(self):
         return '<User {}>'.format(self.name)
 
-    def __init__(self, name='', passwd='', cnname='', email='', phone='', role=0):
+    @classmethod
+    def new(cls, name='', passwd='', cnname='', email='', phone='', role=0):
+        return cls(id=None, name=name, passwd=passwd, cnname=cnname,
+                   email=email, phone=phone, role=role, created=None)
+
+    def __init__(self, id, name, passwd, cnname, email, phone, role, created):
+        self.id = id
         self.name = name
         self.passwd = passwd
         self.cnname = cnname
         self.email = email
         self.phone = phone
         self.role = role
-
+        self.created = created
 
     def save(self):
         db.session.add(self)
