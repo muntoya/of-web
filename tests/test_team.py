@@ -2,24 +2,12 @@
 
 import pytest
 from web.model.user import User
+from .test_user import user1, user2
 
 
 @pytest.fixture
-def user1():
-    u = User.get_by_name('user1')
-    if u is None:
-        u = User.new('user1', 'asfdg', 'heihei')
-        u.save()
-    return u
-
-
-@pytest.fixture
-def user2():
-    u = User.get_by_name('user2')
-    if u is None:
-        u = User.new('user2', '123456', 'haha')
-        u.save()
-    return u
+def team1(user1):
+    pass
 
 
 def test_query_all_and_compare(user1):

@@ -18,6 +18,14 @@ class Team(db.Model):
     def new(cls, name='', creator=''):
         return cls(id=None, name=name, creator=creator, created=None)
 
+    @classmethod
+    def get_by_name(cls, name):
+        pass
+
+    @classmethod
+    def get_by_id(cls, id):
+        pass
+
     def __init__(self, id, name, creator, created):
         self.id = id
         self.name = name
