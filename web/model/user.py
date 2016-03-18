@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
 from web import db
+
 
 class User(db.Model):
     __tablename__ = 'user'
@@ -20,8 +21,14 @@ class User(db.Model):
 
     @classmethod
     def new(cls, name='', passwd='', cnname='', email='', phone='', role=0):
-        return cls(id=None, name=name, passwd=passwd, cnname=cnname,
-                   email=email, phone=phone, role=role, created=None)
+        user = cls(id=None, name=name, passwd=passwd, cnname=cnname,
+            email=email, phone=phone, role=role, created=None)
+        db.session.add(user)
+        try:
+            db.session.commit()
+            return user
+        except IntegrityError:
+            return None
 
     @classmethod
     def get_all(cls):
@@ -55,9 +62,4 @@ class User(db.Model):
         self.phone = phone
         self.role = role
         self.created = created
-
-    def save(self):
-        db.session.add(self)
-        db.session.commit()
-
 

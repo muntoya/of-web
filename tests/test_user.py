@@ -9,7 +9,6 @@ def user1():
     u = User.get_by_name('user1')
     if u is None:
         u = User.new('user1', 'asfdg', 'heihei')
-        u.save()
     return u
 
 
@@ -18,7 +17,6 @@ def user2():
     u = User.get_by_name('user2')
     if u is None:
         u = User.new('user2', '123456', 'haha')
-        u.save()
     return u
 
 
