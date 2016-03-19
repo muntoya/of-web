@@ -11,9 +11,9 @@ from flask.ext.sqlalchemy import SQLAlchemy
 
 
 mysql_url = 'mysql+pymysql://root:123456@127.0.0.1:3306/' \
-            'falcon_portal_test?charset=utf8'
+            'falcon_test?charset=utf8'
 mysql_test_url = 'mysql+pymysql://root:123456@127.0.0.1:3306/' \
-                 'falcon_portal?charset=utf8'
+                 'falcon?charset=utf8'
 app = Flask(__name__)
 app.config.from_object("frame.config")
 if hasattr(sys, '_called_from_test'):

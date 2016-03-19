@@ -23,8 +23,8 @@ def setup():
 
     with open(sql_script) as f:
         content = f.read()
-    sql = 'DROP DATABASE IF EXISTS falcon_portal_test; CREATE DATABASE falcon_portal_test; ' \
-          'USE falcon_portal_test;'
+    sql = 'DROP DATABASE IF EXISTS falcon_test; CREATE DATABASE falcon_test; ' \
+          'USE falcon_test;'
     session.execute(sql)
     session.execute(content)
 
